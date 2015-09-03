@@ -1,0 +1,73 @@
+/**Universidad Del Valle de Guatemala 
+ *Algoritmos y Estructura de Datos 
+ *Seccion 10- Hoja de Trabajo 6
+ *------------------------------------------------------------------
+ *@author
+ *Pedro Joaquin Castillo 14224
+ *Christopher Aju 13
+ *------------------------------------------------------------------
+ *Main: Clase encargada de la interaccion entre el programa
+ *y el usuario 
+ **/
+
+/**
+ * @author PedroJoaquin
+ *
+ */
+
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args){
+		int a = 0;
+		System.out.println("BIENVENIDO AL ORGANIZADOR DE DESARROLLADORES\nELIJA LA IMPLEMENTACION DE SET QUE DESEA UTILIZAR:\n1.HASHSET\n2.TREESET\n3.LINKEDHASHSET\nINGRESE SU OPCION: ");
+		Scanner teclado = new Scanner(System.in);
+		String opcion = teclado.nextLine();
+		a = verificar(opcion);
+		if(a!=0){
+			Organizador organizador = new Organizador(a);
+		}
+		else{
+			
+		}
+	}
+	
+	public  static int verificar(String i){
+	    int val=0;
+		try {
+			val= Integer.parseInt(i);
+			if (val>0 && val <= 3){
+				return val; 
+			}
+			else {
+				System.out.println("EL NUMERO NO SE ENCUENTRA EN EL RANGO DE OPCIONES");
+				val=0;
+				return val; 
+			} 
+		}
+		catch (Exception e){
+			System.out.println("POR FAVOR INGRESA UN NUMERO");
+			val=0;
+			return val; 
+		}
+	}
+	
+	public  static int verificar2(String i){
+	    int val=0;
+		try {
+			val= Integer.parseInt(i);
+			if (val>0 && val <= 2){
+				return val; 
+			}
+			else {
+				System.out.println("EL NUMERO NO SE ENCUENTRA EN EL RANGO DE OPCIONES");
+				val=0;
+				return val; 
+			} 
+		}
+		catch (Exception e){
+			System.out.println("POR FAVOR INGRESA UN NUMERO");
+			val=0;
+			return val; 
+		}
+	}
+}
