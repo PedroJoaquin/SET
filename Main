@@ -19,18 +19,140 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args){
 		int a = 0;
-		System.out.println("BIENVENIDO AL ORGANIZADOR DE DESARROLLADORES\nELIJA LA IMPLEMENTACION DE SET QUE DESEA UTILIZAR:\n1.HASHSET\n2.TREESET\n3.LINKEDHASHSET\nINGRESE SU OPCION: ");
 		Scanner teclado = new Scanner(System.in);
-		String opcion = teclado.nextLine();
-		a = verificar(opcion);
-		if(a!=0){
-			Organizador organizador = new Organizador(a);
+		//int ver =0; 
+		System.out.println("BIENVENIDO AL ORGANIZADOR DE DESARROLLADORES\nELIJA LA IMPLEMENTACION DE SET QUE DESEA UTILIZAR:\n");
+		while(a==0){
+			System.out.println("1.HASHSET\n2.TREESET\n3.LINKEDHASHSET\nINGRESE SU OPCION: ");
+			String opcion = teclado.nextLine();
+			a = verificar(opcion);
+		}	
+		Organizador organizador = new Organizador(a);
+		int b=0; 
+		while(b==0){
+			System.out.println("INGRESE NOMBRE DEL DESARROLLADOR: ");
+			String nombre = teclado.nextLine();
+			a=0;
+			while (a==0){
+				System.out.println("¿ES DESARROLLADOR DE JAVA?\n1.Si\n2.No");
+				String seleccion = teclado.nextLine();
+				a = verificar2(seleccion);
+			}
+			if(a==1)
+				organizador.guardarJava(nombre);
+			a=0;
+			while(a==0){
+				System.out.println("¿ES DESARROLLADOR WEB?\n1.Si\n2.No");
+				String seleccion = teclado.nextLine();
+				a = verificar2(seleccion);
+			}
+			if(a==1)
+				organizador.guardarWeb(nombre);
+			a=0;
+			while(a==0){
+				System.out.println("¿ES DESARROLLADOR DE CELULARES?\n1.Si\n2.No");
+				String seleccion = teclado.nextLine();
+				a = verificar2(seleccion);
+			}
+			if(a==1)
+				organizador.guardarCel(nombre);
+			a=0;
+			while(a==0){
+				System.out.println("¿DESEA INGRESAR OTRO NOMBRE?\n1.Si\n2.No");
+				String seleccion = teclado.nextLine();
+				a = verificar2(seleccion);
+			}
+			if(a==2)
+				b=1;
 		}
-		else{
+			organizador.javaWebCel();
+			organizador.javaNoWeb();
+			organizador.webCel();
+			organizador.webOCel();
+			System.out.println("------------------------------------------ RESULTADOS ----------------------------------------------");
+			System.out.println("DESARROLLADORES CON EXPERIENCIA JAVA, WEB Y CELULARES");
+			if(!organizador.getJavaWebCel().isEmpty()){
+				for(String temp : organizador.getJavaWebCel()){
+					System.out.println(temp);
+				}
+			}
+			else
+				System.out.println("NINGUNO");
 			
-		}
+			System.out.println("----------------------------------------------------------------------------------------------------");
+			System.out.println("DESARROLLADORES CON EXPERIENCIA JAVA PERO NO EN WEB");
+			if(!organizador.getJavaNoWeb().isEmpty()){
+				for(String temp : organizador.getJavaNoWeb()){
+					System.out.println(temp);
+				}
+			}
+			else
+				System.out.println("NINGUNO");
+			
+			System.out.println("----------------------------------------------------------------------------------------------------");
+			System.out.println("DESARROLLADORES CON EXPERIENCIA EN WEB Y CELULARES PERO NO EN JAVA");
+			if(!organizador.getWebCel().isEmpty()){
+				for(String temp : organizador.getWebCel()){
+					System.out.println(temp);
+				}
+			}
+			else
+				System.out.println("NINGUNO");
+			
+			System.out.println("----------------------------------------------------------------------------------------------------");
+			System.out.println("DESARROLLADORES CON EXPERIENCIA EN WEB O CELULARES PERO NO EN JAVA");
+			if(!organizador.getWebOCel().isEmpty()){
+				for(String temp : organizador.getWebOCel()){
+					System.out.println(temp);
+				}
+			}
+			else 
+				System.out.println("NINGUNO");
+			
+			System.out.println("----------------------------------------------------------------------------------------------------");
+			if(organizador.javaSubWeb())
+				System.out.println("EL CONJUNTO DE DESARROLLADORES JAVA ES UN SUBCONJUNTO DE DESARROLLADORES WEB");
+			else
+				System.out.println("EL CONJUNTO DE DESARROLLADORES JAVA NO ES UN SUBCONJUNTO DE DESARROLLADORES WEB");
+			System.out.println("----------------------------------------------------------------------------------------------------");
+			if(organizador.mayorConjunto()==organizador.getJava()){
+				System.out.println("EL CONJUNTO CON EL MAYOR NUMERO DE DESARROLLADORES ES JAVA");
+				System.out.println("LA LISTA DE NOMBRES DESORDENADOS:");
+				for(String temp : organizador.getJava()){
+					System.out.println(temp);
+				}
+				System.out.println("----------------------------------------------------------------------------------------------------");
+				System.out.println("LA LISTA DE NOMBRES ORDENADOS:");
+				for (String temp : organizador.hashToTree(organizador.getJava())){
+					System.out.println(temp);
+				}
+			}
+			else if(organizador.mayorConjunto()==organizador.getWeb()){
+					System.out.println("EL CONJUNTO CON EL MAYOR NUMERO DE DESARROLLADORES ES WEB");
+					System.out.println("LA LISTA DE NOMBRES DESORDENADOS:");
+					for(String temp : organizador.getWeb()){
+						System.out.println(temp);
+					}
+					System.out.println("----------------------------------------------------------------------------------------------------");
+					System.out.println("LA LISTA DE NOMBRES ORDENADOS:");
+					for (String temp : organizador.hashToTree(organizador.getWeb())){
+						System.out.println(temp);
+					}	
+			}
+			else{
+				System.out.println("EL CONJUNTO CON EL MAYOR NUMERO DE DESARROLLADORES ES CELULAR");
+				System.out.println("LA LISTA DE NOMBRES DESORDENADOS:");
+				for(String temp : organizador.getCel()){
+					System.out.println(temp);
+				}
+				System.out.println("----------------------------------------------------------------------------------------------------");
+				System.out.println("LA LISTA DE NOMBRES ORDENADOS");
+				for (String temp : organizador.hashToTree(organizador.getCel())){
+					System.out.println(temp);
+				}
+			}
 	}
-	
+			
 	public  static int verificar(String i){
 	    int val=0;
 		try {
@@ -71,3 +193,4 @@ public class Main {
 		}
 	}
 }
+
