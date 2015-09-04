@@ -38,6 +38,7 @@ public class Organizador {
 	 * una instancia del Factory y asignarle un objeto retornado de
 	 * Factory a cada uno de los conjuntos Set dependiendo del parametro. 
 	 * @param i
+	 * 
 	 * Permite determinar que tipo de objetos se asignara a los conjuntos 
 	 */
 	public Organizador(int i){
@@ -50,6 +51,63 @@ public class Organizador {
 		web = factory.seleccion(i);
 		cel = factory.seleccion(i);
 	}
+	
+	/**
+	 * Permite obtener el conjunto JavaWebCel
+	 * @return HashSet JavaWebCel 
+	 */
+	public Set<String> getJavaWebCel(){
+		return JavaWebCel;
+	}
+	
+	/**
+	 * Permite obtener el conjunto JavaNoWeb
+	 * @return HashSet JavaNoWeb
+	 */
+	public Set<String> getJavaNoWeb(){
+		return JavaNoWeb;
+	}
+	
+	/**
+	 * Permite obtentes el conjunto WebCel
+	 * @return HashSet WebCel 
+	 */
+	public Set<String> getWebCel(){
+		return WebCel;
+	}
+	
+	/**
+	 * Permite obtener el conjunto WebOCel 
+	 * @return Hashset WebOCel 
+	 */
+	public Set<String> getWebOCel(){
+		return WebOCel;
+	}
+	
+	/**
+	 * Permite obtener el conjunto java
+	 * @return HashSet java
+	 */
+	public Set<String> getJava(){
+		return java;
+	}
+	
+	/**
+	 * Permite obtener el conjunto web
+	 * @return HashSet web
+	 */
+	public Set<String> getWeb(){
+		return web;
+	}
+	
+	/**
+	 * Permite obtener el conjunto cel 
+	 * @return hashset cel 
+	 */
+	public Set<String> getCel(){
+		return cel;
+	}
+	
 	
 	/**
 	 * guardarJava: Este metodo tiene como funcion guardar un 
@@ -141,8 +199,8 @@ public class Organizador {
 				WebOCel.add(temp[i]);
 			}
 		}
-		String[] temp2 = new String[web.size()];
-		web.toArray(temp2);
+		String[] temp2 = new String[cel.size()];
+		cel.toArray(temp2);
 		for(int i=0;i<temp2.length;i++){
 			if(!java.contains(temp2[i])){
 				WebOCel.add(temp2[i]);
@@ -161,7 +219,7 @@ public class Organizador {
 	public boolean javaSubWeb(){
 		int contador=0;
 		String[] temp = new String[java.size()];
-		web.toArray(temp);
+		java.toArray(temp);
 		for(int i=0;i<temp.length;i++){
 			if(web.contains(temp[i])){
 				contador++;
@@ -200,8 +258,10 @@ public class Organizador {
 	 * @param i HashSet que se desea convertir 
 	 * @return El TreeSet generado con el HashSet
 	 */
-	public Set<String> hashToTree(HashSet<String> i){
+	public Set<String> hashToTree(Set<String> i){
 		TreeSet<String> temp = new TreeSet<String>(i);
 		return temp; 
 	}
+
 }
+
